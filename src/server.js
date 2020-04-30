@@ -2,10 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
-require('dotenv').config();
 
-const dbUrl = process.env.BD_URL;
-const PORT = process.env.PORT;
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
+const dbUrl = process.env.BD_URL || '';
+const PORT = process.env.PORT || 3000;
 let database;
 
 app.use(bodyParser.json());
